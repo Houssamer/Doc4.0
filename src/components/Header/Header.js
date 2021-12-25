@@ -1,10 +1,10 @@
 import React from 'react';
 import './Header.css';
 import logo from '../../assets/logo.png';
-import { useNavigate } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 function Header({ col }) {
-  const navigate = useNavigate();
+  const history = useHistory();
 
   return (
     <div className="header_container">
@@ -18,11 +18,11 @@ function Header({ col }) {
         </h3>
         <h3
           className={`header_link ${col === 'contact' && 'click'}`}
-          onClick={() => navigate('/contact')}
+          onClick={() => history.push('/contact')}
         >
           Contact
         </h3>
-        <button className="header_button" onClick={() => navigate('/login')}>
+        <button className="header_button" onClick={() => history.push('/login')}>
           Connectez-vous
         </button>
       </div>

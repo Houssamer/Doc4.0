@@ -1,0 +1,90 @@
+.medecin_dashboard {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.medecin_leftSide {
+    width: 15%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.medecin_logo_container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.medecin_logo {
+    font-size: 1.5rem;
+    margin-left: 1vw;
+    color: #0077B6;
+}
+
+.medecin_leftSide_middle {
+    width: 100%;
+    height: 30vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.medecin_list {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    height: 6vh;
+    padding-left: 2vw;
+    cursor: pointer;
+}
+
+.medecin_list > h3 {
+    margin-left: 2vw;
+    font-size: 1rem;
+}
+
+.shown {
+    background-color: #0077B6;
+}
+
+.white {
+    color: white;
+}
+
+.medecin_leftSide_bottom {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 10vh;
+    margin-bottom: 5vh;
+}
+
+
+.medecin_name {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.medecin_name > h4 {
+    margin-left: 1vh;
+}
+
+.medecin_leftSide_bottom > img {
+    cursor: pointer;
+}
+
+.medecin_rightSide {
+    width: 85%;
+    height: 100%;
+    background-color: #F2F5F9;
+}

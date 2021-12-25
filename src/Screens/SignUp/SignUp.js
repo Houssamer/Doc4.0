@@ -1,19 +1,19 @@
 import React from 'react';
 import './SignUp.css';
-import { useNavigate } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import logo from '../../assets/logowhite.png';
 
 function SignUp() {
-  const navigate = useNavigate();
+  const history = useHistory();
 
   function login() {
-    navigate('/login');
+    history.push('/login');
   }
   function signup() {}
 
   return (
     <div className="signUp_container">
-      <div className="signUp_logo" onClick={() => navigate('/')}>
+      <div className="signUp_logo" onClick={() => history.push('/')}>
         <img src={logo} alt="logo" />
         <h2>MedApp</h2>
       </div>

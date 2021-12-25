@@ -1,14 +1,14 @@
 import React from 'react';
 import './Contact.css';
 import logo from '../../assets/logowhite.png';
-import { useNavigate } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 
 function Contact() {
-  const navigate = useNavigate();
+  const history = useHistory();
 
   return (
     <div className="contact_container">
-      <div className="contact_logo" onClick={() => navigate('/')}>
+      <div className="contact_logo" onClick={() => history.push('/')}>
         <img src={logo} alt="logo" />
         <h2>MedApp</h2>
       </div>

@@ -1,0 +1,173 @@
+.dashboard_container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.dashboard_topSide {
+  display: flex;
+  align-items: flex-start;
+  width: 80%;
+  height: 10vh;
+  color: #0077b6;
+  font-size: 2rem;
+}
+
+.dashboard_bottomSide {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+  width: 95%;
+  height: 75vh;
+  margin-bottom: 5vh;
+}
+
+.dashboard_top {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 80%;
+  height: 5vh;
+  color: #0077b6;
+  font-size: 1.5rem;
+}
+
+.dashboard_bottom {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 90%;
+}
+
+.dashboard_leftSide {
+  width: 50%;
+  height: 60vh;
+  display: grid;
+  grid-template-areas:
+    '. rect0 . rect1 .'
+    'rect2 . rect3 . rect4'
+    '. rect5 . rect6 .';
+}
+
+.dashboard_stats {
+  width: 14vh;
+  height: 14vh;
+  background-color: white;
+  box-shadow: -4px 0px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
+  border-radius: 8px;
+}
+
+.dashboard_stats > h4 {
+  font-size: 0.8rem;
+  text-align: left;
+  margin-left: 1vw;
+  color: #877f7f;
+}
+
+.dashboard_rect {
+  width: 13vh;
+  height: 13vh;
+  border-radius: 8px;
+  box-shadow: -4px 0px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.rect0 {
+  grid-area: rect0;
+}
+
+.rect1 {
+  grid-area: rect1;
+  background-color: #6dd5ed;
+}
+
+.rect2 {
+  grid-area: rect2;
+  background-color: #9390ff;
+}
+
+.rect3 {
+  grid-area: rect3;
+  background-color: #e290ff;
+}
+
+.rect4 {
+  grid-area: rect4;
+  background-color: #90ff90;
+}
+
+.rect5 {
+  grid-area: rect5;
+  background-color: #ffd990;
+}
+
+.rect6 {
+  grid-area: rect6;
+}
+
+.dashboard_rightSide {
+  display: flex;
+  flex-direction: column;
+  width: 45%;
+  align-items: center;
+  height: 70vh;
+}
+
+.dashboard_rightSide > h3 {
+    color: #0077b6;
+    font-weight: 400;
+}
+
+.dashboard_patients {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 80%;
+  height: 50vh;
+  background-color: white;
+  border-radius: 30px;
+  box-shadow: -4px 0px 4px rgba(0, 0, 0, 0.25), 0px 4px 4px rgba(0, 0, 0, 0.25);
+  overflow-y: auto;
+}
+
+/* width */
+::-webkit-scrollbar {
+    width: 10px;
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: #f1f1f1;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: #888;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: #555;
+  }
+
+
+.dashboard_patient {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 3vh 0 3vh;
+  width: 80%;
+  height: 6vh;
+  border-radius: 30px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  background-color: #EBEBEB;
+  margin-top: 2vh;
+}
+
+.dashboard_patient > img {
+    object-fit: contain;
+    width: 30px;
+}
