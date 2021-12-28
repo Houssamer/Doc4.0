@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useRef, useState } from 'react';
 import './Calendrier.css';
 import Calendar from 'react-calendar';
 import 'react-calendar/dist/Calendar.css';
@@ -22,6 +22,15 @@ function Calendrier() {
   ]);
   const [date, setDate] = useState(new Date());
 
+  function selected(e) {
+    console.log(e.currentTarget.style.backgroundColor);
+    if (e.currentTarget.style.backgroundColor === "rgb(3, 168, 128)") {
+      e.currentTarget.style.backgroundColor = '';
+    } else {
+      e.currentTarget.style.backgroundColor = "#03A880";
+    }
+  }
+
   return (
     <div className="calendrier_container">
       <div className="calendrier_topSide">
@@ -34,26 +43,26 @@ function Calendrier() {
             value={date}
             className="calendrier_style"
           />
-          <button className='calendrier_button'>Valider</button>
+          <button className="calendrier_button">Valider</button>
         </div>
         <div className="calendrier_rightSide">
           <div className="calendrier_timing_table">
-            <div className="calendrier_timing_left">
-              <div className="calendrier_matin">
+            <div className="calendrier_timing_sides">
+              <div className="calendrier_period">
                 <p>Matin</p>
               </div>
               {matin.map((time) => (
-                <div className="calendrier_time">
+                <div className="calendrier_time" onClick={(e) => selected(e)}>
                   <p>{time}</p>
                 </div>
               ))}
             </div>
-            <div className="calendrier_timing_right">
-              <div className="calendrier_afternoon">
+            <div className="calendrier_timing_sides">
+              <div className="calendrier_period">
                 <p>Apres-midi</p>
               </div>
               {afternoon.map((time) => (
-                <div className="calendrier_time">
+                <div className="calendrier_time" onClick={(e) => selected(e)}>
                   <p>{time}</p>
                 </div>
               ))}

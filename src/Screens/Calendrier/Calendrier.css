@@ -1,41 +1,121 @@
-.calendrier_container {}
-
-.calendrier_topSide {}
-
-.calendrier_bottomSide {}
-
-.calendrier_leftSide {}
-
-.calendrier_style {
+.calendrier_container {
+  width: 100%;
+  height: 100vh;
   display: flex;
   flex-direction: column;
-  align-items: flex-start;
-  padding: 24px;
-
-  position: absolute;
-  width: 306px;
-  height: 310px;
-  left: 323px;
-  top: 216px;
-
-  /* dropdown */
-
-  box-shadow: 2px 16px 19px rgba(0, 0, 0, 0.09);
-  border-radius: 8px;
+  align-items: center;
 }
 
-.calendrier_button {}
+.calendrier_topSide {
+  font-size: 2rem;
+  display: flex;
+  align-items: flex-start;
+  width: 80%;
+  height: 10vh;
+  margin-bottom: 10vh;
+  color: #0077B6;
+}
 
-.calendrier_rightSide {}
+.calendrier_topSide > h1 {
+  font-weight: 500;
+}
 
-.calendrier_timing_table {}
+.calendrier_bottomSide {
+  width: 90%;
+  height: 70vh;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: space-between;
+}
 
-.calendrier_timing_left {}
+.calendrier_leftSide {
+  height: 80%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
 
-.calendrier_matin {}
+.calendrier_style {
+  box-shadow: 2px 16px 19px rgba(0, 0, 0, 0.09);
+  border-radius: 8px;
+  padding: 2vh;
+}
 
-.calendrier_time {}
+.calendrier_button {
+  width: 40%;
+  height: 5vh;
+  border: none;
+  border-radius: 30px;
+  background-color: #0077B6;
+  color: white;
+  font-weight: 500;
+  font-size: .9rem;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  transition: all 300ms ease;
+}
 
-.calendrier_timing_right {}
+.calendrier_button:hover {
+  background-color: white;
+  color: black;
+}
 
-.calendrier_afternoon {}
+.calendrier_rightSide {
+  width: 55%;
+  height: 60vh;
+  background-color: #464646;
+  border-radius: 30px;
+  box-shadow: 2px 16px 19px rgba(0, 0, 0, 0.09);
+}
+
+.calendrier_timing_table {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  height: 100%;
+}
+
+.calendrier_timing_sides {
+  height: 100%;
+  width: 40%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.calendrier_period {
+  width: 60%;
+  height: 5vh;
+  border: 2px solid #FAFF12;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  background-color: #6DD5ED;
+}
+
+.calendrier_time {
+  width: 60%;
+  height: 5vh;
+  border: 2px solid #FAFF12;
+  border-radius: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  cursor: pointer;
+  transition: all 300ms ease;
+}
+
+.calendrier_time:hover {
+  background-color: white;
+  color: #6DD5ED;
+}
+
+.not_available {
+  background-color: #CA0303;
+}
