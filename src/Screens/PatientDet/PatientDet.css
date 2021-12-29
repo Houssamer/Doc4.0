@@ -1,0 +1,189 @@
+.patientDet_container {
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.patientDet_topSide {
+  display: flex;
+  align-items: center;
+  justify-content: flex-start;
+  width: 90%;
+  height: 10vh;
+}
+
+h1 {
+  font-weight: 500;
+  margin-left: 3vh;
+  font-size: 1.6rem;
+}
+
+.patientDet_middleSide {
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 90%;
+  height: 30vh;
+  background-color: white;
+  border-radius: 30px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.patientDet_section1 {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.patientDet_section1 > img {
+  object-fit: contain;
+  width: 12vh;
+  border-radius: 50%;
+  border: 3px solid #68d1e9;
+  margin-top: 1vh;
+}
+
+.patientDet_section1 > h3 {
+    margin-bottom: 0;
+}
+
+.patientDet_section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: space-between;
+  height: 80%;
+  width: 20%;
+}
+
+.patientDet_section > h4 {
+  margin-bottom: 0;
+}
+
+.patientDet_section2 {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  text-align: left;
+  width: 20%;
+  height: 80%;
+}
+
+.patientDet_section2 > h4 {
+  margin-bottom: 0;
+}
+
+.patientDet_section2 > p {
+    color: #979797;
+}
+.patientDet_section > p {
+    color: #979797;
+}
+
+.patientDet_button {
+  margin-top: 5vh;
+  width: 50%;
+  height: 5vh;
+  border: none;
+  border-radius: 30px;
+  background-color: #68D1E9;
+  color: white;
+  font-weight: 600;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  transition: all 300ms ease;
+  cursor: pointer;
+}
+
+.patientDet_button:hover {
+    background-color: white;
+    -webkit-text-fill-color: black;
+}
+
+.patientDet_bottomSide {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 90%;
+    height: 35vh;
+    background-color: white;
+    border-radius: 30px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.patientDet_appointement {
+    width: 25%;
+    height: 80%;
+    background-color: #F2F5F9;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+}
+
+.patientDet_appointement > img {
+    cursor: pointer;
+}
+
+.patientDet_consultation {
+    width: 25%;
+    height: 80%;
+    background-color: #F2F5F9;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    border-radius: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+}
+
+.patientDet_consultation > h2 {
+    margin-bottom: 0;
+    margin-top: 1vh;
+}
+
+.patientDet_consultation  p {
+    width: 70%;
+    height: 5vh;
+    background-color: #68D1E9;
+    border-radius: 30px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.patientDet_plusButton {
+    width: 30%;
+    height: 4vh;
+    border: none;
+    background-color: #68d1e9;
+    color: white;
+    border-radius: 30px;
+    margin-bottom: 1vh;
+    cursor: pointer;
+    transition: all 300ms ease;
+}
+
+.patientDet_plusButton:hover {
+    background-color: black;
+    color: white;
+}
+
+.patientDet_buttonD {
+    width: 20%;
+    height: 6vh;
+    border: none;
+    border-radius: 30px;
+    background-color: #68d1e9;
+    color: white;
+    font-size: 1rem;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    cursor: pointer;
+    transition: all 300ms ease;
+}
+
+.patientDet_buttonD:hover {
+    background-color: white;
+    color: black;
+}

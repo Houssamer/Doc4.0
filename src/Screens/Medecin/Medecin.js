@@ -47,7 +47,15 @@ function Medecin() {
   return (
     <div className="medecin_dashboard">
       <div className="medecin_leftSide">
-        <div className="medecin_logo_container">
+        <div
+          className="medecin_logo_container"
+          onClick={() => {
+            setCalendrierState(false);
+            setPatientState(false);
+            setDashboardState(true);
+            history.push('/');
+          }}
+        >
           <img src={logo} alt="logo" />
           <h2 className="medecin_logo">MedApp</h2>
         </div>

@@ -7,15 +7,11 @@ import SignUp from './Screens/SignUp/SignUp';
 import Contact from './Screens/Contact/Contact';
 import Medecin from './Screens/Medecin/Medecin';
 import Calendrier from './Screens/Calendrier/Calendrier';
-import PatientDet from './Screens/PatientDet/PatientDet';
-import Patients from './Screens/Patients/Patients';
 import Patient from './Screens/Patient/Patient';
 import Secretaire from './Screens/Secretaire/Secretaire';
 
 function App() {
-  const [user, setUser] = useState({
-    role: 'medecin',
-  });
+  const [user, setUser] = useState();
   return (
     <div className="App">
       <Router>
@@ -28,15 +24,6 @@ function App() {
             </Switch>
           ) : user.role === 'secretaire' ? (
             <Switch>
-              <Route path="/patient/:id">
-                <PatientDet user="secretaire" />
-              </Route>
-              <Route path="/patients">
-                <Patients user="secretaire" />
-              </Route>
-              <Route path="/calendrier">
-                <Calendrier />
-              </Route>
               <Route path="/">
                 <Secretaire />
               </Route>
@@ -44,9 +31,6 @@ function App() {
           ) : (
             user.role === 'patient' && (
               <Switch>
-                <Route path="/calendrier">
-                  <Calendrier />
-                </Route>
                 <Route path="/">
                   <Patient />
                 </Route>
@@ -55,6 +39,9 @@ function App() {
           )
         ) : (
           <Switch>
+            <Route path="/contact">
+              <Contact />
+            </Route>
             <Route path="/signup">
               <SignUp />
             </Route>
@@ -63,9 +50,6 @@ function App() {
             </Route>
             <Route path="/">
               <Home />
-            </Route>
-            <Route path="/contact">
-              <Contact />/
             </Route>
           </Switch>
         )}
