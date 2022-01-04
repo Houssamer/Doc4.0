@@ -6,12 +6,38 @@ import Home from './Screens/Home/Home';
 import SignUp from './Screens/SignUp/SignUp';
 import Contact from './Screens/Contact/Contact';
 import Medecin from './Screens/Medecin/Medecin';
-import Calendrier from './Screens/Calendrier/Calendrier';
 import Patient from './Screens/Patient/Patient';
 import Secretaire from './Screens/Secretaire/Secretaire';
+import { useDispatch, useSelector } from 'react-redux';
+import { LoginUser, selectuser } from './features/userSlice';
+import { useEffect } from 'react';
+import axios from './axios/axios';
 
 function App() {
-  const [user, setUser] = useState();
+  const user = useSelector(selectuser);
+  const dispatch = useDispatch();
+
+  useEffect(() => {
+    if (localStorage.getItem('token')) {
+      const email = localStorage.getItem('email');
+      const body = JSON.stringify({
+        email,
+      });
+      const config ={
+        headers: {
+          'Content-Type': 'application/json',
+          'Authorization': 'Bearer ' + localStorage.getItem('token'),
+        },
+      };
+
+      console.log('here');
+
+      axios.post('/utilisateur/read-email.php', body, config).then((res) => {
+        dispatch(LoginUser(res.data));
+      });
+    }
+  }, []);
+
   return (
     <div className="App">
       <Router>

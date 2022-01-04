@@ -12,11 +12,15 @@ import Calendrier from '../Calendrier/Calendrier';
 import Dashboard from '../Dashboard/Dashboard';
 import { useHistory } from 'react-router-dom';
 import './Patient.css';
+import { useDispatch, useSelector } from 'react-redux';
+import { LogoutUser, selectuser } from '../../features/userSlice';
 
 function Patient() {
   const [dashboardState, setDashboardState] = useState(true);
   const [calendrierState, setCalendrierState] = useState(false);
   const history = useHistory();
+  const dispatch = useDispatch();
+  const patient = useSelector(selectuser);
 
   function DashboardF() {
     setCalendrierState(false);
@@ -30,6 +34,13 @@ function Patient() {
     setCalendrierState(true);
 
     history.push('/calendrier');
+  }
+
+  function logout() {
+    dispatch(LogoutUser());
+    localStorage.removeItem('token');
+    localStorage.removeItem('email');
+    history.push("/");
   }
 
   return (
@@ -67,7 +78,7 @@ function Patient() {
             <img src={user} alt="patient" />
             <h4>Nom</h4>
           </div>
-          <img src={off} alt="off" />
+          <img src={off} alt="off" onClick={logout} />
         </div>
       </div>
       <div className="patient_rightSide">
@@ -76,7 +87,7 @@ function Patient() {
             <Calendrier />
           </Route>
           <Route path="/">
-            <PatientDet />
+            <PatientDet id={patient.id} />
           </Route>
         </Switch>
       </div>

@@ -13,12 +13,16 @@ import Patients from '../Patients/Patients';
 import Calendrier from '../Calendrier/Calendrier';
 import Dashboard from '../Dashboard/Dashboard';
 import { useHistory } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
+import { LogoutUser, selectuser } from '../../features/userSlice';
 
 function Medecin() {
   const [dashboardState, setDashboardState] = useState(true);
   const [calendrierState, setCalendrierState] = useState(false);
   const [patientState, setPatientState] = useState(false);
+  const med = useSelector(selectuser);
   const history = useHistory();
+  const dispatch = useDispatch();
 
   function DashboardF() {
     setCalendrierState(false);
@@ -42,6 +46,13 @@ function Medecin() {
     setPatientState(true);
 
     history.push('/patients');
+  }
+
+  function logout() {
+    dispatch(LogoutUser());
+    localStorage.removeItem('token');
+    localStorage.removeItem('email');
+    history.push("/");
   }
 
   return (
@@ -85,9 +96,9 @@ function Medecin() {
         <div className="medecin_leftSide_bottom">
           <div className="medecin_name">
             <img src={medecin} alt="medecin" />
-            <h4>Dr. Flan</h4>
+            <h4>Dr. {med.nom}</h4>
           </div>
-          <img src={off} alt="off" />
+          <img src={off} alt="off" onClick={logout} />
         </div>
       </div>
       <div className="medecin_rightSide">
