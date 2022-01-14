@@ -15,6 +15,8 @@ import Dashboard from '../Dashboard/Dashboard';
 import { useHistory } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { LogoutUser, selectuser } from '../../features/userSlice';
+import { useLocation } from 'react-router-dom/cjs/react-router-dom.min';
+import { useEffect } from 'react';
 
 function Medecin() {
   const [dashboardState, setDashboardState] = useState(true);
@@ -23,6 +25,21 @@ function Medecin() {
   const med = useSelector(selectuser);
   const history = useHistory();
   const dispatch = useDispatch();
+  const location = useLocation();
+
+  useEffect(() => {
+    const path = location.pathname;
+    const regex = new RegExp('patient', 'g');
+    if (regex.test(path)) {
+      setCalendrierState(false);
+      setDashboardState(false);
+      setPatientState(true);
+    } else if (path === '/calendrier') {
+      setPatientState(false);
+      setDashboardState(false);
+      setCalendrierState(true);
+    }
+  }, []);
 
   function DashboardF() {
     setCalendrierState(false);
@@ -52,7 +69,7 @@ function Medecin() {
     dispatch(LogoutUser());
     localStorage.removeItem('token');
     localStorage.removeItem('email');
-    history.push("/");
+    history.push('/');
   }
 
   return (

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import logo from '../../assets/logoblue.png';
 import dashboard from '../../assets/dashboard.svg';
@@ -14,6 +14,7 @@ import { useHistory } from 'react-router-dom';
 import './Patient.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { LogoutUser, selectuser } from '../../features/userSlice';
+import { useLocation } from 'react-router-dom/cjs/react-router-dom.min';
 
 function Patient() {
   const [dashboardState, setDashboardState] = useState(true);
@@ -21,6 +22,17 @@ function Patient() {
   const history = useHistory();
   const dispatch = useDispatch();
   const patient = useSelector(selectuser);
+
+  const location = useLocation();
+
+  useEffect(() => {
+    const path = location.pathname;
+    
+    if (path === '/calendrier') {
+      setDashboardState(false);
+      setCalendrierState(true);
+    }
+  }, []);
 
   function DashboardF() {
     setCalendrierState(false);

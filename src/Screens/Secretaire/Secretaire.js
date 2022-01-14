@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Switch, Route } from 'react-router-dom';
 import logo from '../../assets/logoblue.png';
 import dashboard from '../../assets/dashboard.svg';
@@ -11,13 +11,32 @@ import Patients from '../Patients/Patients';
 import Calendrier from '../Calendrier/Calendrier';
 import Dashboard from '../Dashboard/Dashboard';
 import { useHistory } from 'react-router-dom';
+import { useLocation } from 'react-router-dom/cjs/react-router-dom.min';
 import './Secretaire.css';
+import { LogoutUser } from '../../features/userSlice';
+import { useDispatch } from 'react-redux';
 
 function Secretaire() {
   const [dashboardState, setDashboardState] = useState(true);
   const [calendrierState, setCalendrierState] = useState(false);
   const [patientState, setPatientState] = useState(false);
   const history = useHistory();
+  const dispatch = useDispatch();
+  const location = useLocation();
+
+  useEffect(() => {
+    const path = location.pathname;
+    const regex = new RegExp('patient', 'g');
+    if (regex.test(path)) {
+      setCalendrierState(false);
+      setDashboardState(false);
+      setPatientState(true);
+    } else if (path === '/calendrier') {
+      setPatientState(false);
+      setDashboardState(false);
+      setCalendrierState(true);
+    }
+  }, []);
 
   function DashboardF() {
     setCalendrierState(false);
@@ -41,6 +60,13 @@ function Secretaire() {
     setPatientState(true);
 
     history.push('/patients');
+  }
+
+  function logout() {
+    dispatch(LogoutUser());
+    localStorage.removeItem('token');
+    localStorage.removeItem('email');
+    history.push("/");
   }
   return (
     <div className="secretaire_dashboard">
@@ -85,7 +111,7 @@ function Secretaire() {
             <img src={user} alt="secretaire" />
             <h4>Nom</h4>
           </div>
-          <img src={off} alt="off" />
+          <img src={off} alt="off" onClick={logout} />
         </div>
       </div>
       <div className="secretaire_rightSide">

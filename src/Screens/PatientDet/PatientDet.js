@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useRef } from 'react';
 import './PatientDet.css';
 import profileIcon from '../../assets/profileblue.png';
 import profile from '../../assets/profilepic.png';
@@ -8,8 +8,32 @@ import { useParams } from 'react-router-dom';
 import axios from '../../axios/axios';
 import { useDispatch } from 'react-redux';
 import { LoginUser } from '../../features/userSlice';
+import ReactModal from 'react-modal';
+
+const customStyle = {
+  content: {
+    width: '50%',
+    position: 'absolute',
+    left: '25%',
+    display: 'flex',
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 30,
+    boxShadow: '-2px 2px 5px 2px rgba(0, 0, 0, .24)',
+  },
+};
 
 function PatientDet({ user, id }) {
+  const [modalIsOpen, setIsOpen] = useState(false);
+  const [patients, setPatients] = useState([]);
+  const emailRef = useRef();
+  const passwordRef = useRef();
+  const numRef = useRef();
+  const nomRef = useRef();
+  const prenomRef = useRef();
+  const adresseRef = useRef();
+  const sexeRef = useRef();
+  const naissanceRef = useRef();
   const params = useParams();
   const Id = params.id ? parseInt(params.id) : id;
 
@@ -26,21 +50,87 @@ function PatientDet({ user, id }) {
       date: '06-11-2021',
     },
   ]);
+  const [date, setDate] = useState(patient?.naissance);
 
   useEffect(() => {
     const config = {
       headers: {
-        'Authorization': 'Bearer ' + localStorage.getItem('token'),
+        Authorization: 'Bearer ' + localStorage.getItem('token'),
       },
     };
     axios
-      .get('/utilisateur/read-single.php/?id=4', config)
+      .get('/utilisateur/read-single.php/?id=' + Id, config)
       .then((res) => {
         console.log(res);
         setPatient(res.data);
       })
       .catch((err) => console.log(err));
   }, []);
+
+  useEffect(() => {
+
+  }, [])
+
+  function openModal() {
+    setIsOpen(true);
+  }
+  function closeModal() {
+    setIsOpen(false);
+  }
+  function addPatient() {
+    const id = patient.id;
+    const email = emailRef.current.value
+      ? emailRef.current.value
+      : patient.email;
+    const password = passwordRef.current.value;
+    const gsm = numRef.current.value ? numRef.current.value : patient.gsm;
+    const nom = nomRef.current.value ? nomRef.current.value : patient.nom;
+    const prenom = prenomRef.current.value
+      ? prenomRef.current.value
+      : patient.prenom;
+    const adresse = adresseRef.current.value
+      ? adresseRef.current.value
+      : patient.adresse;
+    const sexe = sexeRef.current.value ? sexeRef.current.value : patient.sexe;
+    const naissance = naissanceRef.current.value
+      ? naissanceRef.current.value
+      : patient.naissance;
+    const role = 'patient';
+
+    const body = JSON.stringify({
+      id,
+      nom,
+      prenom,
+      naissance,
+      email,
+      password,
+      adresse,
+      gsm,
+      sexe,
+      role,
+    });
+
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + localStorage.getItem('token'),
+      },
+    };
+
+    axios
+      .post('/utilisateur/update.php', body, config)
+      .then((res) => {
+        console.log(res);
+        alert(res.data.message);
+        window.location.reload(false);
+        closeModal();
+      })
+      .catch((err) => alert(err.message));
+  }
+
+  function del() {
+
+  }
 
   return (
     <div className="patientDet_container">
@@ -68,14 +158,16 @@ function PatientDet({ user, id }) {
           <>
             <h4>Date de naissance</h4>
             <p>{patient?.naissance}</p>
-          </> 
+          </>
         </div>
         <div className="patientDet_section2">
           <>
             <h4>Numero de tel</h4>
             <p>{patient?.gsm}</p>
           </>
-          <button className="patientDet_button">Modifier</button>
+          <button className="patientDet_button" onClick={openModal}>
+            Modifier
+          </button>
         </div>
       </div>
       <div className="patientDet_bottomSide">
@@ -83,7 +175,7 @@ function PatientDet({ user, id }) {
           <h2>Rendez-vous</h2>
           <p>{appointement.date}</p>
           <p>{appointement.time}</p>
-          <img src={close} alt="close" />
+          <img src={close} alt="close" onClose={del} />
         </div>
         <div className="patientDet_consultation">
           <h2>Consultations</h2>
@@ -95,6 +187,119 @@ function PatientDet({ user, id }) {
           <button className="patientDet_buttonD">Dossier medical</button>
         )}
       </div>
+      <ReactModal
+        isOpen={modalIsOpen}
+        onRequestClose={closeModal}
+        style={customStyle}
+      >
+        <div className="addPatient_content">
+          <div className="addPatient_inputs">
+            <div className="addPatient_input_container">
+              <label htmlFor="email" className="addPatient_label">
+                Email
+              </label>
+              <input
+                type="email"
+                ref={emailRef}
+                className="addPatient_input"
+                placeholder={patient?.email}
+              />
+            </div>
+            <div className="addPatient_input_container">
+              <label htmlFor="num" className="addPatient_label">
+                Numero tel
+              </label>
+              <input
+                type="text"
+                ref={numRef}
+                className="addPatient_input"
+                placeholder={patient?.gsm}
+              />
+            </div>
+            <div className="addPatient_input_container">
+              <label htmlFor="password" className="addPatient_label">
+                Mot de passe
+              </label>
+              <input
+                type="password"
+                ref={passwordRef}
+                className="addPatient_input"
+              />
+            </div>
+            <div className="addPatient_input_container">
+              <label htmlFor="repass" className="addPatient_label">
+                re-Mot de passe
+              </label>
+              <input type="password" className="addPatient_input" />
+            </div>
+            <div className="addPatient_input_container">
+              <label htmlFor="nom" className="addPatient_label">
+                Nom
+              </label>
+              <input
+                type="text"
+                ref={nomRef}
+                className="addPatient_input"
+                placeholder={patient?.nom}
+              />
+            </div>
+            <div className="addPatient_input_container">
+              <label htmlFor="prenom" className="addPatient_label">
+                Prenom
+              </label>
+              <input
+                type="text"
+                ref={prenomRef}
+                className="addPatient_input"
+                placeholder={patient?.prenom}
+              />
+            </div>
+            <div className="addPatient_input_container">
+              <label htmlFor="adresse" className="addPatient_label">
+                Adresse
+              </label>
+              <input
+                type="text"
+                ref={adresseRef}
+                className="addPatient_input"
+                placeholder={patient?.adresse}
+              />
+            </div>
+            <div className="addPatient_input_container">
+              <label htmlFor="birth" className="addPatient_label">
+                Date de naissance
+              </label>
+              <input
+                type="date"
+                ref={naissanceRef}
+                className="addPatient_input"
+                value={date}
+                onChange={(e) => {
+                  setDate(e.value);
+                }}
+              />
+            </div>
+            <div className="addPatient_input_container">
+              <label htmlFor="" className="addPatient_label">
+                Sexe
+              </label>
+              <select
+                name="sexe"
+                ref={sexeRef}
+                id="sexe"
+                className="addPatient_input"
+                selected={patient?.sexe}
+              >
+                <option value="homme">Homme</option>
+                <option value="femme">Femme</option>
+              </select>
+            </div>
+          </div>
+          <button className="addPatient_button" onClick={addPatient}>
+            Modifier
+          </button>
+        </div>
+      </ReactModal>
     </div>
   );
 }
