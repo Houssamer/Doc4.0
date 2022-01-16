@@ -8,6 +8,7 @@ import { useSelector } from 'react-redux';
 import { selectuser } from '../../features/userSlice';
 import { useEffect } from 'react';
 import ReactLoading from 'react-loading';
+import { useHistory } from 'react-router-dom';
 
 function Calendrier() {
   const [matin, setMatin] = useState([
@@ -31,6 +32,7 @@ function Calendrier() {
   const user = useSelector(selectuser);
   const [rdv, setRdv] = useState([]);
   const [loading, setLoading] = useState();
+  const history = useHistory();
 
   useEffect(() => {
     setLoading(true);
@@ -100,7 +102,10 @@ function Calendrier() {
     if (rdv_date && rdv_time) {
       axios
         .post('/rendez-vous/create.php', body, config)
-        .then((res) => alert(res.data.message))
+        .then((res) => {
+          alert(res.data.message);
+          history.push('/')
+        })
         .catch((err) => console.log(err.message));
     } else {
       alert('Veuillez entrez une date');

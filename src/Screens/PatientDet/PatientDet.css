@@ -153,7 +153,7 @@ h1 {
     margin-top: 1vh;
 }
 
-.patientDet_consultation  p {
+.patientDet_consultation > p {
     width: 70%;
     height: 5vh;
     background-color: #68D1E9;
@@ -162,6 +162,14 @@ h1 {
     display: flex;
     align-items: center;
     justify-content: center;
+    transition: all 300ms ease;
+    cursor: pointer;
+}
+
+.patientDet_consultation > p:hover {
+  background-color: white;
+  border: 2px solid #68D0E9;
+  color:  #68D0E9;
 }
 
 .patientDet_plusButton {

@@ -1,0 +1,112 @@
+.consultation_container {
+    width: 100%;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.consultation_topSide {
+    display: flex;
+    align-items: flex-start;
+    width: 90%;
+    height: 10vh;
+    color: #0077b6;
+}
+
+.consultation_topSide > h1 {
+    font-size: 3rem;
+}
+
+.consultation_bottomSide {
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 95%;
+    height: 75vh;
+    margin-bottom: 5vh;
+}
+
+.consultation_leftSide {
+    width: 30%;
+    background-color: white;
+    height: 70vh;
+    border-radius: 30px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.consultation_leftSide > p {
+    width: 70%;
+    height: 5vh;
+    background-color: #68D1E9;
+    border-radius: 30px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 300ms ease;
+    cursor: pointer;
+}
+
+.clicked {
+    transition: all 300ms ease;
+    background-color: #0077b6 !important;
+    color: white !important;
+}
+
+.consultation_rightSide {
+    width: 50%;
+    background-color: white;
+    height: 70vh;
+    border-radius: 30px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.consultation_rightSide > p {
+    width: 70%;
+    height: 5vh;
+    background-color: #464646;
+    border-radius: 30px;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 300ms ease;
+    cursor: pointer;
+}
+
+.consultation_remarque {
+    display: block;
+    resize: none;
+    border-radius: 30px;
+    background-color: #464646;
+    color: white;
+    width: 70%;
+    height: 50%;
+    padding-top: 2vh;
+    text-align: center;
+}
+
+.consultation_button {
+    background-color: #464646;
+    color: white;
+    width: 20%;
+    height: 5vh;
+    border-radius: 30px;
+    transition: all 300ms ease;
+    cursor: pointer;
+}
+
+.consultation_button:hover {
+    background-color: white;
+    color: #464646;
+    border: 2px solid #464646;
+}

@@ -7,14 +7,13 @@ import user from '../../assets/user.svg';
 import off from '../../assets/off.png';
 import { useState } from 'react';
 import PatientDet from '../PatientDet/PatientDet';
-import Patients from '../Patients/Patients';
 import Calendrier from '../Calendrier/Calendrier';
-import Dashboard from '../Dashboard/Dashboard';
 import { useHistory } from 'react-router-dom';
 import './Patient.css';
 import { useDispatch, useSelector } from 'react-redux';
 import { LogoutUser, selectuser } from '../../features/userSlice';
 import { useLocation } from 'react-router-dom/cjs/react-router-dom.min';
+import Consultation from '../Consultation/Consultation';
 
 function Patient() {
   const [dashboardState, setDashboardState] = useState(true);
@@ -31,6 +30,9 @@ function Patient() {
     if (path === '/calendrier') {
       setDashboardState(false);
       setCalendrierState(true);
+    } else {
+      setCalendrierState(false);
+      setDashboardState(true);
     }
   }, []);
 
@@ -88,7 +90,7 @@ function Patient() {
         <div className="patient_leftSide_bottom">
           <div className="patient_name">
             <img src={user} alt="patient" />
-            <h4>Nom</h4>
+            <h4>{patient?.nom} {patient?.prenom}</h4>
           </div>
           <img src={off} alt="off" onClick={logout} />
         </div>
@@ -97,6 +99,9 @@ function Patient() {
         <Switch>
           <Route path="/calendrier">
             <Calendrier />
+          </Route>
+          <Route path="/consultations/:id">
+            <Consultation />
           </Route>
           <Route path="/">
             <PatientDet id={patient.id} />

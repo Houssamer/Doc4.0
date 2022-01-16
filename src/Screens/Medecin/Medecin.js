@@ -38,6 +38,10 @@ function Medecin() {
       setPatientState(false);
       setDashboardState(false);
       setCalendrierState(true);
+    } else {
+      setPatientState(false);
+      setCalendrierState(false);
+      setDashboardState(true);
     }
   }, []);
 

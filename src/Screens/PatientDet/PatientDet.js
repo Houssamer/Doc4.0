@@ -9,6 +9,7 @@ import axios from '../../axios/axios';
 import { useDispatch } from 'react-redux';
 import { LoginUser } from '../../features/userSlice';
 import ReactModal from 'react-modal';
+import { useHistory } from 'react-router-dom';
 
 const customStyle = {
   content: {
@@ -25,7 +26,6 @@ const customStyle = {
 
 function PatientDet({ user, id }) {
   const [modalIsOpen, setIsOpen] = useState(false);
-  const [patients, setPatients] = useState([]);
   const emailRef = useRef();
   const passwordRef = useRef();
   const numRef = useRef();
@@ -36,13 +36,10 @@ function PatientDet({ user, id }) {
   const naissanceRef = useRef();
   const params = useParams();
   const Id = params.id ? parseInt(params.id) : id;
-
+  const history = useHistory();
   const [patient, setPatient] = useState();
-  const [appointement, setAppointement] = useState({
-    date: '28-12-2021',
-    time: '9h30min',
-  });
-  const [consultaions, setConsultations] = useState([
+  const [appointement, setAppointement] = useState({});
+  const [consultations, setConsultations] = useState([
     {
       date: '28-11-2021',
     },
@@ -61,15 +58,50 @@ function PatientDet({ user, id }) {
     axios
       .get('/utilisateur/read-single.php/?id=' + Id, config)
       .then((res) => {
-        console.log(res);
         setPatient(res.data);
       })
       .catch((err) => console.log(err));
   }, []);
 
   useEffect(() => {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + localStorage.getItem('token'),
+      },
+    };
 
-  }, [])
+    const body = JSON.stringify({
+      utilisateur_id: Id,
+    });
+
+    axios
+      .post('/rendez-vous/read-user.php', body, config)
+      .then((res) => {
+        setAppointement(res.data.data.slice(-1)[0]);
+      })
+      .catch((err) => alert(err.message));
+  }, []);
+
+  useEffect(() => {
+    const config = {
+      headers: {
+        'Content-Type': 'application/json',
+        Authorization: 'Bearer ' + localStorage.getItem('token'),
+      },
+    };
+
+    const body = JSON.stringify({
+      utilisateur_id: Id,
+    });
+
+    axios
+      .post('/consultation/read-user.php', body, config)
+      .then((res) => {
+        setConsultations(res.data.data);
+      })
+      .catch((err) => alert(err.message));
+  }, []);
 
   function openModal() {
     setIsOpen(true);
@@ -120,7 +152,6 @@ function PatientDet({ user, id }) {
     axios
       .post('/utilisateur/update.php', body, config)
       .then((res) => {
-        console.log(res);
         alert(res.data.message);
         window.location.reload(false);
         closeModal();
@@ -129,7 +160,24 @@ function PatientDet({ user, id }) {
   }
 
   function del() {
+    const config = {
+      headers: {
+        'Content-Type': 'applcation/json',
+        Authorization: 'Bearer ' + localStorage.getItem('token'),
+      },
+    };
 
+    const body = {
+      id: appointement.id,
+    };
+
+    axios
+      .post('/rendez-vous/delete.php', body, config)
+      .then((res) => {
+        alert(res.data.message);
+        window.location.reload(false);
+      })
+      .catch((err) => alert(err.message));
   }
 
   return (
@@ -173,15 +221,31 @@ function PatientDet({ user, id }) {
       <div className="patientDet_bottomSide">
         <div className="patientDet_appointement">
           <h2>Rendez-vous</h2>
-          <p>{appointement.date}</p>
-          <p>{appointement.time}</p>
-          <img src={close} alt="close" onClose={del} />
+          <p>{appointement?.rdv_date}</p>
+          <p>{appointement?.rdv_time}</p>
+          <img src={close} alt="close" onClick={del} />
         </div>
         <div className="patientDet_consultation">
-          <h2>Consultations</h2>
-          <p>{consultaions[0].date}</p>
-          <p>{consultaions[1].date}</p>
-          <button className="patientDet_plusButton">plus</button>
+          {consultations ? (
+            <>
+              <h2>Consultations</h2>
+              <p>{consultations[0]?.consultation_date}</p>
+              {consultations[1] && <p>{consultations[1]?.consultation_date}</p>}
+              <button
+                className="patientDet_plusButton"
+                onClick={() => {
+                  history.push('/consultations/'+Id);
+                }}
+              >
+                plus
+              </button>
+            </>
+          ) : (
+            <>
+              <h2>Consultations</h2>
+              <p>Pas de consultation</p>
+            </>
+          )}
         </div>
         {user && (
           <button className="patientDet_buttonD">Dossier medical</button>
