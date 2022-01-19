@@ -43,7 +43,6 @@ function Patients() {
       .then((res) => {
         //setPatients(res.data);
         setPatients(res.data.data);
-        console.log(res.data.data[0]);
       })
       .catch((err) => console.log(err));
   }, []);

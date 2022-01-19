@@ -17,6 +17,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { LogoutUser, selectuser } from '../../features/userSlice';
 import { useLocation } from 'react-router-dom/cjs/react-router-dom.min';
 import { useEffect } from 'react';
+import Dossier from '../Dossier/Dossier';
+import Consultation from '../Consultation/Consultation'
 
 function Medecin() {
   const [dashboardState, setDashboardState] = useState(true);
@@ -30,7 +32,8 @@ function Medecin() {
   useEffect(() => {
     const path = location.pathname;
     const regex = new RegExp('patient', 'g');
-    if (regex.test(path)) {
+    const regex1 =  new RegExp('dossier', 'g');
+    if (regex.test(path) || regex1.test(path)) {
       setCalendrierState(false);
       setDashboardState(false);
       setPatientState(true);
@@ -124,6 +127,12 @@ function Medecin() {
       </div>
       <div className="medecin_rightSide">
         <Switch>
+          <Route path="/dossier/:id">
+            <Dossier />
+          </Route>
+          <Route path="/consultations/:id">
+            <Consultation />
+          </Route>
           <Route path="/patient/:id">
             <PatientDet user="medecin" />
           </Route>

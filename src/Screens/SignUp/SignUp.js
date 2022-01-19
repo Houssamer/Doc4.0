@@ -84,7 +84,11 @@ function SignUp() {
               <label htmlFor="password" className="signUp_label">
                 Mot de passe
               </label>
-              <input type="password" ref={passwordRef} className="signUp_input" />
+              <input
+                type="password"
+                ref={passwordRef}
+                className="signUp_input"
+              />
             </div>
             <div className="signUp_input_container">
               <label htmlFor="repass" className="signUp_label">
@@ -120,7 +124,12 @@ function SignUp() {
               <label htmlFor="" className="signUp_label">
                 Sexe
               </label>
-              <select name="sexe" id="sexe" ref={sexeRef} className="signUp_input">
+              <select
+                name="sexe"
+                id="sexe"
+                ref={sexeRef}
+                className="signUp_input"
+              >
                 <option value="homme">Homme</option>
                 <option value="femme">Femme</option>
               </select>
@@ -128,7 +137,9 @@ function SignUp() {
           </div>
           {/** Inputs End */}
 
-          <button className="signUp_button" onClick={signup}>Créer</button>
+          <button className="signUp_button" onClick={signup}>
+            Créer
+          </button>
           <div className="signUp_text_container">
             <p className="signUp_text">Vous avez déjà un compte?</p>
             <p className="signUp_text_span" onClick={login}>

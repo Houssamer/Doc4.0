@@ -234,7 +234,7 @@ function PatientDet({ user, id }) {
               <button
                 className="patientDet_plusButton"
                 onClick={() => {
-                  history.push('/consultations/'+Id);
+                  history.push('/consultations/' + Id);
                 }}
               >
                 plus
@@ -248,7 +248,12 @@ function PatientDet({ user, id }) {
           )}
         </div>
         {user && (
-          <button className="patientDet_buttonD">Dossier medical</button>
+          <button
+            className="patientDet_buttonD"
+            onClick={() => history.push('/dossier/'+Id)}
+          >
+            Dossier medical
+          </button>
         )}
       </div>
       <ReactModal

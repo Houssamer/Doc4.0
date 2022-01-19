@@ -1,35 +1,57 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useState } from 'react';
 import './Dashboard.css';
 import profile from '../../assets/profile.png';
+import axios from '../../axios/axios';
+import moment from 'moment';
 
 function Dashboard() {
-  const [patients, setPatients] = useState([
-      {
-          id: 1,
-          nom: "nom",
-          prenom: "prenom",
-          heure: "10:15"
-      },
-      {
-          id: 2,
-          nom: "nom",
-          prenom: "prenom",
-          heure: "10:15"
-      },
-      {
-          id: 3,
-          nom: "nom",
-          prenom: "prenom",
-          heure: "10:15"
-      },
-      {
-          id: 4,
-          nom: "nom",
-          prenom: "prenom",
-          heure: "10:15"
+  const [patients, setPatients] = useState([]);
+
+  useEffect(() => {
+    const config = {
+      headers: {
+        'COntent-Type': 'application/json',
+        'Authorization': 'Bearer ' + localStorage.getItem('token'),
       }
-  ]);
+    }
+
+    const body = JSON.stringify({
+      //date: moment(new Date()).format('YYYY-MM-DD'),
+      date: '2022-01-20'
+    })
+
+    console.log(body)
+
+    axios
+      .post('/rendez-vous/read.php', body, config)
+      .then((res) => {
+        if (res.data.data) {
+          res.data.data.map((rdv) => {
+            const user = JSON.stringify({
+              id:  rdv.utilisateur_id,
+            })
+            axios 
+              .post('/utilisateur/read-single.php', user, config)
+              .then((res) => {
+                setPatients([
+                  ...patients,
+                  {
+                    id: res.data.data[0].id,
+                    nom: res.data.data[0].nom,
+                    prenom: res.data.data[0].prenom,
+                    heure: rdv.rdv_time
+                  }
+                ])
+              })
+              .catch((err) => alert(err.message))
+          })
+        } else {
+          alert(res.data.message);
+        }
+      })
+      .catch((err) => alert(err.message))
+  }, [])
 
   return (
     <div className="dashboard_container">

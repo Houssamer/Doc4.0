@@ -59,7 +59,7 @@ function Consultation() {
           <p>Date {selectedConsult?.consultation_date}</p>
           <textarea
             className="consultation_remarque"
-            readOnly={user.role === 'patient'}
+            readOnly={user.role === 'patient' || user.role === 'secretaire'}
             value={selectedConsult?.consultation_remarque}
             onChange={(e) => {
               setSelectedConsult({

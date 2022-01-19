@@ -15,6 +15,7 @@ import { useLocation } from 'react-router-dom/cjs/react-router-dom.min';
 import './Secretaire.css';
 import { LogoutUser } from '../../features/userSlice';
 import { useDispatch } from 'react-redux';
+import Consultation from '../Consultation/Consultation'
 
 function Secretaire() {
   const [dashboardState, setDashboardState] = useState(true);
@@ -70,7 +71,7 @@ function Secretaire() {
     dispatch(LogoutUser());
     localStorage.removeItem('token');
     localStorage.removeItem('email');
-    history.push("/");
+    history.push('/');
   }
   return (
     <div className="secretaire_dashboard">
@@ -120,6 +121,9 @@ function Secretaire() {
       </div>
       <div className="secretaire_rightSide">
         <Switch>
+          <Route path="/consultations/:id">
+            <Consultation />
+          </Route>
           <Route path="/patient/:id">
             <PatientDet />
           </Route>
