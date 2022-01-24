@@ -39,26 +39,24 @@ function PatientDet({ user, id }) {
   const history = useHistory();
   const [patient, setPatient] = useState();
   const [appointement, setAppointement] = useState({});
-  const [consultations, setConsultations] = useState([
-    {
-      date: '28-11-2021',
-    },
-    {
-      date: '06-11-2021',
-    },
-  ]);
+  const [consultations, setConsultations] = useState([]);
   const [date, setDate] = useState(patient?.naissance);
 
   useEffect(() => {
     const config = {
       headers: {
+        'Content-Type': 'application/json',
         Authorization: 'Bearer ' + localStorage.getItem('token'),
       },
     };
+
+    const body = JSON.stringify({
+      id: Id,
+    });
     axios
-      .get('/utilisateur/read-single.php/?id=' + Id, config)
+      .post('/utilisateur/read-single.php', body, config)
       .then((res) => {
-        setPatient(res.data);
+        setPatient(res.data[0]);
       })
       .catch((err) => console.log(err));
   }, []);
@@ -250,7 +248,7 @@ function PatientDet({ user, id }) {
         {user && (
           <button
             className="patientDet_buttonD"
-            onClick={() => history.push('/dossier/'+Id)}
+            onClick={() => history.push('/dossier/' + Id)}
           >
             Dossier medical
           </button>
