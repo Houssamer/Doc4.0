@@ -22,6 +22,7 @@ const customStyle = {
 function Patients() {
   const [modalIsOpen, setIsOpen] = useState(false);
   const [patients, setPatients] = useState([]);
+  const [patientsFiltered, setPatientsFiltered] = useState([]);
   const emailRef = useRef();
   const passwordRef = useRef();
   const numRef = useRef();
@@ -43,6 +44,7 @@ function Patients() {
       .then((res) => {
         //setPatients(res.data);
         setPatients(res.data.data);
+        setPatientsFiltered(res.data.data);
       })
       .catch((err) => console.log(err));
   }, []);
@@ -53,6 +55,18 @@ function Patients() {
   function closeModal() {
     setIsOpen(false);
   }
+
+  function searchPatients(event) {
+    const searchedPatient = event.target.value;
+    if (searchedPatient !== '') {
+      setPatientsFiltered(
+        patients.filter((patient) => patient.nom.search(searchedPatient) > -1)
+      );
+    } else {
+      setPatientsFiltered(patients);
+    }
+  }
+
   function addPatient() {
     const email = emailRef.current.value;
     const password = passwordRef.current.value;
@@ -87,6 +101,7 @@ function Patients() {
       .then((res) => {
         alert(res.data.message);
         closeModal();
+        window.location.reload(false);
       })
       .catch((err) => alert(err.message));
   }
@@ -105,12 +120,13 @@ function Patients() {
             type="text"
             placeholder="rechercher par nom"
             className="patient_searchInput"
+            onChange={(event) => searchPatients(event)}
           />
           <img src={search} alt="search" />
         </div>
       </div>
       <div className="patients_bottomSide">
-        {patients.map((patient) => (
+        {patientsFiltered.map((patient) => (
           <PatientCard
             nom={patient?.nom}
             prenom={patient?.prenom}

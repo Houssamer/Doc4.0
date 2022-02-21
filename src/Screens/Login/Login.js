@@ -35,6 +35,7 @@ function Login() {
     axios
       .post('/auth/auth.php', body, config)
       .then((res) => {
+        console.log(res.data)
         localStorage.setItem('token', res.data[1].token);
         localStorage.setItem('email', res.data[0].email);
         dispatch(LoginUser(res.data[0]))

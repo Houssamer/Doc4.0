@@ -34,12 +34,13 @@ function Dashboard() {
             axios 
               .post('/utilisateur/read-single.php', user, config)
               .then((res) => {
+                console.log(res.data)
                 setPatients([
                   ...patients,
                   {
-                    id: res.data.data[0].id,
-                    nom: res.data.data[0].nom,
-                    prenom: res.data.data[0].prenom,
+                    id: res.data[0].id,
+                    nom: res.data[0].nom,
+                    prenom: res.data[0].prenom,
                     heure: rdv.rdv_time
                   }
                 ])

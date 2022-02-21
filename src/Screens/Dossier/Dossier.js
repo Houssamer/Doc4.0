@@ -66,11 +66,12 @@ function Dossier() {
             .then((res) => alert(res.data.message))
             .catch((err) => console.log(err.message));
         } else if (res.data.data) {
-          setDossierId(res.data.data[0].id)
+          console.log(res.data.data[0].id)
+          setDossierId(parseInt(res.data.data[0].id))
           axios
             .post(
               '/document/read-dossier.php',
-              { dossierId: res.data.data[0].id },
+              { dossierId: parseInt(res.data.data[0].id) },
               config
             )
             .then((res) => {
@@ -81,7 +82,7 @@ function Dossier() {
           axios
             .post(
               '/examen-clinique/read-dossier.php',
-              { dossierId: res.data.data[0].id },
+              { dossierId: parseInt(res.data.data[0].id) },
               config
             )
             .then((res) => {
@@ -92,7 +93,7 @@ function Dossier() {
           axios
             .post(
               '/etat-general/read-dossier.php',
-              { dossierId: res.data.data[0].id },
+              { dossierId: parseInt(res.data.data[0].id) },
               config
             )
             .then((res) => {
@@ -118,6 +119,9 @@ function Dossier() {
       )}
       <div className="dossier_topSide">
         <h1>Dossier Medical</h1>
+        <button className="dossier_button" onClick={openModal}>
+          Ajouter
+        </button>
       </div>
       <ReactModal
         isOpen={modalIsOpen}
@@ -231,9 +235,6 @@ function Dossier() {
             </Table>
           </TableContainer>
         </div>
-        <button className="dossier_button" onClick={openModal}>
-          Ajouter
-        </button>
       </div>
     </div>
   );

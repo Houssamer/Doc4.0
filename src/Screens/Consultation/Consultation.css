@@ -1,112 +1,227 @@
 .consultation_container {
-    width: 100%;
-    height: 100vh;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-between;
+  width: 100%;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
 }
 
 .consultation_topSide {
-    display: flex;
-    align-items: flex-start;
-    width: 90%;
-    height: 10vh;
-    color: #0077b6;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 90%;
+  height: 10vh;
+  color: #0077b6;
+  margin-top: 8vh;
 }
 
 .consultation_topSide > h1 {
-    font-size: 3rem;
+  font-size: 3rem;
 }
 
 .consultation_bottomSide {
-    display: flex;
-    align-items: center;
-    justify-content: space-evenly;
-    width: 95%;
-    height: 75vh;
-    margin-bottom: 5vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  width: 95%;
+  height: 75vh;
+  margin-bottom: 5vh;
 }
 
 .consultation_leftSide {
-    width: 30%;
-    background-color: white;
-    height: 70vh;
-    border-radius: 30px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
+  width: 30%;
+  background-color: white;
+  height: 70vh;
+  border-radius: 30px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 .consultation_leftSide > p {
-    width: 70%;
-    height: 5vh;
-    background-color: #68D1E9;
-    border-radius: 30px;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 300ms ease;
-    cursor: pointer;
+  width: 70%;
+  height: 5vh;
+  background-color: #68d1e9;
+  border-radius: 30px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 300ms ease;
+  cursor: pointer;
 }
 
 .clicked {
-    transition: all 300ms ease;
-    background-color: #0077b6 !important;
-    color: white !important;
+  transition: all 300ms ease;
+  background-color: #0077b6 !important;
+  color: white !important;
 }
 
 .consultation_rightSide {
-    width: 50%;
-    background-color: white;
-    height: 70vh;
-    border-radius: 30px;
-    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: space-evenly;
+  width: 50%;
+  background-color: white;
+  height: 70vh;
+  border-radius: 30px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
 }
 
 .consultation_rightSide > p {
-    width: 70%;
-    height: 5vh;
-    background-color: #464646;
-    border-radius: 30px;
-    color: white;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    transition: all 300ms ease;
-    cursor: pointer;
+  width: 70%;
+  height: 5vh;
+  background-color: #464646;
+  border-radius: 30px;
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 300ms ease;
+  cursor: pointer;
 }
 
 .consultation_remarque {
-    display: block;
-    resize: none;
-    border-radius: 30px;
-    background-color: #464646;
-    color: white;
-    width: 70%;
-    height: 50%;
-    padding-top: 2vh;
-    text-align: center;
+  display: block;
+  resize: none;
+  border-radius: 30px;
+  background-color: #464646;
+  color: white;
+  width: 70%;
+  height: 50%;
+  padding-top: 2vh;
+  text-align: center;
 }
 
 .consultation_button {
-    background-color: #464646;
-    color: white;
-    width: 20%;
-    height: 5vh;
-    border-radius: 30px;
-    transition: all 300ms ease;
-    cursor: pointer;
+  background-color: #464646;
+  color: white;
+  width: 20%;
+  height: 5vh;
+  border-radius: 30px;
+  transition: all 300ms ease;
+  cursor: pointer;
 }
 
 .consultation_button:hover {
-    background-color: white;
-    color: #464646;
-    border: 2px solid #464646;
+  background-color: white;
+  color: #464646;
+  border: 2px solid #464646;
+}
+
+.consultation_top_button {
+  background-color: #68d1e9;
+  color: white;
+  width: 15%;
+  height: 5vh;
+  border-radius: 30px;
+  transition: all 300ms ease;
+  cursor: pointer;
+  border: none;
+  margin-right: 20%;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
+
+.consultation_top_button:hover {
+  background-color: #0077b6;
+}
+
+.consultation_add_content {
+  width: 80%;
+  height: 65vh;
+  margin-bottom: 5vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.consultation_add_inputs {
+  width: 100%;
+  height: 80%;
+  border-radius: 30px;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 2vh;
+}
+
+.consultation_add_input_container {
+  height: 10vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: space-evenly;
+}
+
+.consultation_add_label {
+  font-weight: 500;
+}
+
+.consultation_add_input {
+  width: 80%;
+  height: 5vh;
+  border: 2px solid #68d0e9;
+  outline: none;
+  border-radius: 30px;
+  box-shadow: -2px 2px 5px 2px rgba(0, 0, 0, 0.24);
+  background-color: rgba(0, 0, 0, 0.5);
+  color: white;
+  padding-left: 2vw;
+}
+
+.consultation_add_button {
+  width: 30%;
+  height: 6vh;
+  border: none;
+  border-radius: 30px;
+  background-color: #6dd5ed;
+  color: white;
+  font-weight: 600;
+  box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  cursor: pointer;
+  transition: all 300ms ease;
+}
+
+.consultation_add_button:hover {
+  background-color: white;
+  color: black;
+}
+
+::placeholder {
+  color: white;
+}
+
+.consultation_add_description {
+  display: block;
+  resize: none;
+  border-radius: 30px;
+  background-color: #464646;
+  color: white;
+  width: 70%;
+  height: 50%;
+  padding-top: 2vh;
+  text-align: center;
+}
+
+.consultation_add_input_description {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding-top: 5vh;
+}
+
+.consultation_add_description {
+    margin-top: 1vh;
+}
+
+.consultation_add_description::placeholder {
+  color: white;
+  opacity: 0.8;
 }

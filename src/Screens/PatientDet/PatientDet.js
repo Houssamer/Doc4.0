@@ -78,7 +78,7 @@ function PatientDet({ user, id }) {
       .then((res) => {
         setAppointement(res.data.data.slice(-1)[0]);
       })
-      .catch((err) => alert(err.message));
+      .catch((err) => console.error(err));
   }, []);
 
   useEffect(() => {
@@ -154,7 +154,7 @@ function PatientDet({ user, id }) {
         window.location.reload(false);
         closeModal();
       })
-      .catch((err) => alert(err.message));
+      .catch((err) => console.error(err));
   }
 
   function del() {
@@ -175,7 +175,7 @@ function PatientDet({ user, id }) {
         alert(res.data.message);
         window.location.reload(false);
       })
-      .catch((err) => alert(err.message));
+      .catch((err) => console.error(err));
   }
 
   return (
@@ -242,6 +242,14 @@ function PatientDet({ user, id }) {
             <>
               <h2>Consultations</h2>
               <p>Pas de consultation</p>
+              <button
+                className="patientDet_plusButton"
+                onClick={() => {
+                  history.push('/consultations/' + Id);
+                }}
+              >
+                plus
+              </button>
             </>
           )}
         </div>
